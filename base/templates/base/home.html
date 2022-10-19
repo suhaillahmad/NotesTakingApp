@@ -1,6 +1,7 @@
 <h1>My Notes</h1>
 
 <div>
+  <a href="{% url 'createNotes' %}">Create a Notes</a>
   {% for notes in Note %}
   <div>
     <h5>{{ notes.id }} ---> {{ notes.description }}</h5>
