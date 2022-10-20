@@ -9,6 +9,7 @@ class Category(models.Model):
 
 class Notes(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -18,7 +19,7 @@ class Notes(models.Model):
     
     
     def __str__(self):
-        return self.description
+        return self.title
 
 class Search(models.Model):
     status = models.TextField(null=True, blank=True)

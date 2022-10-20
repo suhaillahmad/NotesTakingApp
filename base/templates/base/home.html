@@ -31,6 +31,13 @@
     </form>
   </div>
 
+  <div>
+    <form method="GET">
+      <input type="text" name="search-area" />
+      <input type="submit" value="Search" />
+    </form>
+  </div>
+
   <hr />
 
   {% for notes in Note %}
@@ -38,7 +45,8 @@
     <p>Created on : {{ notes.created }}</p>
     <p>Last updated on : {{ notes.updated }}</p>
     <p>Category : {{notes.category}}</p>
-    <li>{{ notes.description }}</li>
+    <li>{{ notes.title }}</li>
+    <a href="{% url 'viewNote' notes.id %}">View</a>
     <a href="{% url 'deleteNotes' notes.id %}">Delete</a>
     <a href="{% url 'updateNotes' notes.id%}">Edit</a>
     <hr />
