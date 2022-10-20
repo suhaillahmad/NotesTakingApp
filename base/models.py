@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 
 class Category(models.Model):
@@ -13,6 +14,7 @@ class Notes(models.Model):
     description = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    picture = models.ImageField(upload_to="media", null=True, blank=True, default = 'media/body.jpg')
     
     class Meta:
         ordering = ['-updated', '-created']
@@ -28,4 +30,5 @@ class Search(models.Model):
     
     def __str__(self):
         return self.status
+        
         

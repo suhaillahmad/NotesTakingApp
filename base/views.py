@@ -1,6 +1,4 @@
-from ast import Or
-from re import search
-from turtle import title
+import os
 from django.shortcuts import render, redirect
 from base.forms import NotesForm
 from .models import Notes
@@ -30,7 +28,7 @@ def MyNotes(request):
 def createNotes(request):
     form = NotesForm
     if request.method == 'POST':
-        form = NotesForm(request.POST)
+        form = NotesForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('MyNotes')
@@ -43,7 +41,7 @@ def updateNotes(request, pk):
     form = NotesForm(instance=Note)
     
     if request.method == 'POST':
-        form = NotesForm(request.POST, instance=Note)
+        form = NotesForm(request.POST, request.FILES ,instance=Note)
         if form.is_valid():
             form.save()
             return redirect('MyNotes')
