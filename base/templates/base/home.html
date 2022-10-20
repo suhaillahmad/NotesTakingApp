@@ -9,23 +9,29 @@
   }
 
   a {
+    margin-top: 100%;
     font-size: 20px;
     padding: 10px;
     text-decoration: none;
+  }
+  p {
+    font-size: 15px;
   }
 </style>
 
 <h1>My Notes</h1>
 
-<div>
+<div class="Notes">
   <a href="{% url 'createNotes' %}">Create a Note</a>
+  <hr />
   {% for notes in Note %}
   <div>
-    <a href="{% url 'updateNotes' notes.id%}">Edit</a>
     <p>Created on : {{ notes.created }}</p>
     <p>Last updated on : {{ notes.updated }}</p>
+    <p>Category : {{notes.category}}</p>
     <li>{{ notes.description }}</li>
     <a href="{% url 'deleteNotes' notes.id %}">Delete</a>
+    <a href="{% url 'updateNotes' notes.id%}">Edit</a>
     <hr />
   </div>
 
