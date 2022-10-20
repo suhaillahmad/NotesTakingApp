@@ -1,22 +1,56 @@
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+  rel="stylesheet"
+/>
+
 <style>
   body {
-    text-align: center;
     background-color: black;
-    color: #fff;
+    font-family: "Oswald", sans-serif;
   }
-  li {
-    font-size: 20px;
+  .container {
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px #fff;
   }
-
-  a {
-    margin-top: 100%;
-    font-size: 20px;
-    padding: 10px;
-    text-decoration: none;
+  .picture {
+    border-radius: 10px;
+    margin: 30px 150px;
   }
   p {
-    font-size: 15px;
+    color: grey;
+  }
+  .btn {
+    height: 25px;
+    border: solid 1px;
+    font-size: 8px;
+    margin: 0 5px;
+  }
+  .btn {
+    height: 25px;
+    border: solid 1px;
+    font-size: 8px;
+    margin: 0 5px;
   }
 </style>
-<img src="{{ obj.picture.url }}" style="width: 400px; height: 400px" />
-<p>{{obj.description}}</p>
+
+<div class="container">
+  <img
+    src="{{ obj.picture.url }}"
+    style="width: 200px; height: 200px"
+    class="picture"
+  />
+  <p>{{obj.description}}</p>
+  <a href="{{request.META.HTTP_REFERER}}" class="btn">GO BACK</a>
+</div>

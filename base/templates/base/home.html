@@ -1,56 +1,99 @@
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+  rel="stylesheet"
+/>
+
 <style>
   body {
-    text-align: center;
     background-color: black;
-    color: #fff;
   }
-  li {
-    font-size: 20px;
+  .container {
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px #fff;
   }
-
-  a {
-    margin-top: 100%;
-    font-size: 20px;
-    padding: 10px;
-    text-decoration: none;
+  h1 {
+    margin: 0 100px;
+    padding-top: 5px;
+    color: grey;
   }
   p {
-    font-size: 15px;
+    font-size: 10px;
+  }
+  .btn {
+    height: 25px;
+    border: solid 1px;
+    font-size: 8px;
+    margin: 0 5px;
+  }
+  .details {
+    margin: 25px 0;
+    font-family: "Oswald", sans-serif;
+  }
+
+  .create {
+    margin-left: 450px;
+  }
+  .del {
+    background-color: red;
+    color: #fff;
+  }
+  .edit {
+    background-color: green;
+    color: #fff;
+  }
+  .view {
+    background-color: #add8e6;
+    color: #fff;
   }
 </style>
 
 <h1>My Notes</h1>
+<div class="container">
+  <div class="Notes">
+    <a href="{% url 'createNotes' %} " class="btn create">Create a Note</a>
 
-<div class="Notes">
-  <a href="{% url 'createNotes' %}">Create a Note</a>
+    <div>
+      <form method="GET" action="">
+        {{myFilter.form}}
+        <button type="submit" class="btn">search</button>
+      </form>
+    </div>
 
-  <div>
-    <form method="GET" action="">
-      {{myFilter.form}}
-      <button type="submit">search</button>
-    </form>
-  </div>
+    <div>
+      <form method="GET">
+        <input type="text" name="search-area" />
+        <input type="submit" value="Search" class="btn" />
+      </form>
+    </div>
 
-  <div>
-    <form method="GET">
-      <input type="text" name="search-area" />
-      <input type="submit" value="Search" />
-    </form>
-  </div>
-
-  <hr />
-
-  {% for notes in Note %}
-  <div>
-    <p>Created on : {{ notes.created }}</p>
-    <p>Last updated on : {{ notes.updated }}</p>
-    <p>Category : {{notes.category}}</p>
-    <li>{{ notes.title }}</li>
-    <a href="{% url 'viewNote' notes.id %}">View</a>
-    <a href="{% url 'deleteNotes' notes.id %}">Delete</a>
-    <a href="{% url 'updateNotes' notes.id%}">Edit</a>
     <hr />
-  </div>
 
-  {% endfor %}
+    {% for notes in Note %}
+    <div>
+      <p>
+        Created on : <strong>{{ notes.created }}</strong>||Last updated on :
+        <strong>{{ notes.updated}}</strong>
+      </p>
+      <p>Category : <strong>{{notes.category}}</strong></p>
+      <li class="details">{{ notes.title }}</li>
+      <a href="{% url 'viewNote' notes.id %}" class="btn view">View</a>
+      <a href="{% url 'deleteNotes' notes.id %}" class="btn del">Delete</a>
+      <a href="{% url 'updateNotes' notes.id%}" class="btn edit">Edit</a>
+      <hr />
+    </div>
+
+    {% endfor %}
+  </div>
 </div>
