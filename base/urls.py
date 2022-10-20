@@ -5,5 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.MyNotes, name="MyNotes"),
-    path('create-note/', views.createNotes, name="createNotes")
+    path('create-note/', views.createNotes, name="createNotes"),
+    path('update-note/<str:pk>/', views.updateNotes, name="updateNotes"),
+    path('delete-note/<str:pk>/', views.deleteNotes, name="deleteNotes")
 ]

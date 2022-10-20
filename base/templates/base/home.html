@@ -1,10 +1,33 @@
+<style>
+  body {
+    text-align: center;
+    background-color: black;
+    color: #fff;
+  }
+  li {
+    font-size: 20px;
+  }
+
+  a {
+    font-size: 20px;
+    padding: 10px;
+    text-decoration: none;
+  }
+</style>
+
 <h1>My Notes</h1>
 
 <div>
-  <a href="{% url 'createNotes' %}">Create a Notes</a>
+  <a href="{% url 'createNotes' %}">Create a Note</a>
   {% for notes in Note %}
   <div>
-    <h5>{{ notes.id }} ---> {{ notes.description }}</h5>
+    <a href="{% url 'updateNotes' notes.id%}">Edit</a>
+    <p>Created on : {{ notes.created }}</p>
+    <p>Last updated on : {{ notes.updated }}</p>
+    <li>{{ notes.description }}</li>
+    <a href="{% url 'deleteNotes' notes.id %}">Delete</a>
+    <hr />
   </div>
+
   {% endfor %}
 </div>

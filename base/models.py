@@ -3,7 +3,6 @@ from django.db import models
 
 class Notes(models.Model):
     description = models.TextField(null=True, blank=True)
-    # participants = 
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     
@@ -12,5 +11,5 @@ class Notes(models.Model):
     
     
     def __str__(self):
-        return self.name
+        return self.description
     
