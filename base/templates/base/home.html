@@ -23,7 +23,16 @@
 
 <div class="Notes">
   <a href="{% url 'createNotes' %}">Create a Note</a>
+
+  <div>
+    <form method="GET" action="">
+      {{myFilter.form}}
+      <button type="submit">search</button>
+    </form>
+  </div>
+
   <hr />
+
   {% for notes in Note %}
   <div>
     <p>Created on : {{ notes.created }}</p>

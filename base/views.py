@@ -1,6 +1,8 @@
+from ast import Or
 from django.shortcuts import render, redirect
 from base.forms import NotesForm
 from .models import Notes
+from .filters import OrderFilter
 
 
 # Create your views here.
@@ -10,7 +12,12 @@ from .models import Notes
 def MyNotes(request):
     
     Note = Notes.objects.all()
-    context = {'Note' : Note}
+
+    
+    myFilter = OrderFilter(request.GET, queryset=Note)
+    Note = myFilter.qs
+    
+    context = {'Note' : Note, 'myFilter': myFilter}
     return render(request, 'base/home.html', context)
 
 def createNotes(request):

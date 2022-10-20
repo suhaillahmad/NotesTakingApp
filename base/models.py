@@ -19,4 +19,12 @@ class Notes(models.Model):
     
     def __str__(self):
         return self.description
+
+class Search(models.Model):
+    status = models.TextField(null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
     
+    def __str__(self):
+        return self.status
+        
