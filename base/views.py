@@ -63,5 +63,39 @@ def viewNote(request, pk):
     
     return render(request, 'base/view_note.html', {'obj':Note})
 
+def addBookmark(request, pk):
+    Note = Notes.objects.get(id=pk)
+    
+    Note.bookmark = 1
+    Note.save()
+    
+    Note = Notes.objects.all()
+    return redirect('MyNotes')
+
+
+def deleteBookmark(request,pk):
+    Note = Notes.objects.get(id=pk)
+    
+    Note.bookmark = 0
+    Note.save()
+    
+    Note = Notes.objects.all()
+    return redirect('MyNotes')
+
+def viewbookmarks(request):
+    Note = Notes.objects.all()
+    
+    
+    myFilter = OrderFilter(request.GET, queryset=Note)
+    Note = myFilter.qs
+    
+    searchResult = request.GET.get('search-area') or ''
+    
+    if searchResult:
+        Note = Note.filter(title__icontains=searchResult)
+    
+    context = {'Note' : Note, 'myFilter': myFilter}
+    return render(request, 'base/bookmarks.html', context)
+
     
         

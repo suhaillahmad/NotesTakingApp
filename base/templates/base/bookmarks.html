@@ -42,7 +42,7 @@
     font-family: "Oswald", sans-serif;
   }
 
-  .buttons {
+  .create {
     margin-left: 380px;
   }
   .del {
@@ -57,15 +57,16 @@
     background-color: #add8e6;
     color: #fff;
   }
+  .back {
+    margin-bottom: 30px;
+  }
 </style>
 
-<h1>My Notes</h1>
+<h1>Bookmarks</h1>
 <div class="container">
   <div class="Notes">
-    <div class="buttons">
-      <a href="{% url 'viewbookmarks' %} " class="btn create book">Bookmarks</a>
-      <a href="{% url 'createNotes' %} " class="btn create">Create a Note</a>
-    </div>
+    <a href="{{request.META.HTTP_REFERER}}" class="btn back">GO BACK</a>
+    <a href="{% url 'createNotes' %} " class="btn create">Create a Note</a>
 
     <div>
       <form method="GET" action="">
@@ -85,6 +86,7 @@
 
     {% for notes in Note %}
     <div>
+      {%if notes.bookmark == 1 %}
       <p>
         Created on : <strong>{{ notes.created }}</strong>||Last updated on :
         <strong>{{ notes.updated}}</strong>
@@ -94,13 +96,8 @@
       <a href="{% url 'viewNote' notes.id %}" class="btn view">View</a>
       <a href="{% url 'deleteNotes' notes.id %}" class="btn del">Delete</a>
       <a href="{% url 'updateNotes' notes.id%}" class="btn edit">Edit</a>
-      {%if notes.bookmark == 0 %}
-      <a href="{% url 'addBookmark' notes.id%}" class="btn">Add to Bookmarks</a>
-      {%else%}
-      <a href="{% url 'deleteBookmark' notes.id%}" class="btn">Added</a>
       {%endif%}
     </div>
-    <hr />
 
     {% endfor %}
   </div>

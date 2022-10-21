@@ -14,6 +14,7 @@ class Notes(models.Model):
     description = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    bookmark = models.IntegerField(default=0)
     picture = models.ImageField(upload_to="media", null=True, blank=True, default = 'media/body.jpg')
     
     class Meta:
