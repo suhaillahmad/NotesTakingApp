@@ -1,0 +1,1 @@
+web: waitress-serve --port=$POST Notes.wsgi:application
